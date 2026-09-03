@@ -1,0 +1,11 @@
+.consultation {
+  padding: 88px 0;
+  background: #f7f7f8;
+  margin-top: 80px;
+}
+
+@media (max-width: 720px) {
+  .consultation {
+    padding: 64px 0;
+  }
+}
