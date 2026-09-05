@@ -4,7 +4,7 @@ import "./Consultation.css";
 
 export default function Consultation() {
   return (
-    <section className="consultation">
+    <section className="consultation" id="consultation">
       <div className="container">
         <ConsultationForm />
       </div>

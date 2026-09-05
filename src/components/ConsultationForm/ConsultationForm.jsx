@@ -11,15 +11,16 @@ export default function ConsultationForm() {
 
   return (
     <form className="consultation-form" onSubmit={handleSubmit}>
-      <div className="consultation-form__content">
+      <div className="consultation-form__content" data-reveal>
         <div>
-          <h2 className="consultation-form__title">Готовы обсудить проект?</h2>
-
+          <p className="consultation-form__eyebrow">обсудить проект</p>
+          <h2 className="consultation-form__title">Готовы начать работу?</h2>
           <p className="consultation-form__text">
-            Получить бесплатную консультацию и расчет стоимости под ваш объект
+            Оставьте заявку — подготовим консультацию и расчёт под ваш объект.
           </p>
         </div>
-        <div>
+
+        <div className="consultation-form__actions">
           <label className="consultation-form__checkbox">
             <input
               type="checkbox"
@@ -44,7 +45,11 @@ export default function ConsultationForm() {
         </div>
       </div>
 
-      <div className="consultation-form__panel">
+      <div
+        className="consultation-form__panel"
+        data-reveal
+        style={{ "--reveal-delay": "180ms" }}
+      >
         <div className="consultation-form__contacts">
           <p className="consultation-form__panel-title">Контакты</p>
           <label className="consultation-form__field">

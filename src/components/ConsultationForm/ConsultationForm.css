@@ -1,7 +1,7 @@
 .consultation-form {
   display: grid;
   grid-template-columns: minmax(260px, 400px) minmax(0, 1fr);
-  gap: 48px;
+  gap: 64px;
   align-items: stretch;
 }
 
@@ -10,24 +10,36 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  width: 450px;
-  /* border: 1px solid red; */
+  max-width: 400px;
+}
+
+.consultation-form__eyebrow {
+  margin: 0 0 16px;
+  color: #c50806;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-transform: uppercase;
 }
 
 .consultation-form__title {
-  margin: 0 0 14px;
-  color: #111;
-  font-size: 36px;
+  margin: 0 0 16px;
+  color: #17181b;
+  font-size: 30px;
   font-weight: 600;
   line-height: 1.2;
 }
 
 .consultation-form__text {
-  margin: 0 0 28px;
+  margin: 0;
   max-width: 340px;
   color: var(--text-color);
-  font-size: var(--fz-normal);
-  line-height: 1.55;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.consultation-form__actions {
+  margin-top: 40px;
 }
 
 .consultation-form__checkbox {
@@ -64,9 +76,9 @@
 }
 
 .consultation-form__submit {
-  padding: 13px 28px;
+  padding: 12px 24px;
   border: 1px solid var(--text-color-hover);
-  border-radius: 6px;
+  border-radius: 2px;
   background: var(--text-color-hover);
   color: #fff;
   font-size: 13px;
@@ -93,41 +105,37 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
   gap: 0;
   min-height: 100%;
-  background: #ffffff;
-  border: 1px solid #eeeeef;
-  border-radius: 20px;
+  background: #fff;
+  border: 1px solid #d8d8d8;
+  border-radius: 2px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
-  margin-left: 10%;
 }
 
 .consultation-form__contacts,
 .consultation-form__project {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 32px 36px;
+  gap: 18px;
+  padding: 28px 32px;
 }
 
 .consultation-form__contacts {
-  background: #fafafa;
-  border-right: 1px solid #eeeeef;
+  border-right: 1px solid #dedede;
 }
 
 .consultation-form__panel-title {
   margin: 0 0 4px;
-  color: #2d2d3f;
-  font-size: 15px;
+  color: #17181b;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  opacity: 0.7;
 }
 
 .consultation-form__field {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   min-width: 0;
 }
 
@@ -136,11 +144,11 @@
 }
 
 .consultation-form__label {
-  color: #6b6b7b;
-  font-size: 12px;
+  color: var(--text-color);
+  font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.08em;
 }
 
 .consultation-form__input,
@@ -148,30 +156,28 @@
   width: 100%;
   padding: 12px 0;
   border: none;
-  border-bottom: 2px solid #e8e8ee;
+  border-bottom: 1px solid #d8d8d8;
   border-radius: 0;
   background: transparent;
-  color: #1a1a2e;
+  color: #17181b;
   outline: none;
-  transition: all 0.3s ease;
+  transition: border-color 0.25s ease;
   font-size: 15px;
 }
 
 .consultation-form__input::placeholder,
 .consultation-form__textarea::placeholder {
-  color: #c0c0d0;
+  color: #b0b2b7;
 }
 
 .consultation-form__input:hover,
 .consultation-form__textarea:hover {
-  border-bottom-color: #d0d0da;
+  border-bottom-color: #b8bbc0;
 }
 
 .consultation-form__input:focus,
 .consultation-form__textarea:focus {
-  border-bottom-color: #c51115;
-  background: transparent;
-  box-shadow: none;
+  border-bottom-color: var(--text-color-hover);
 }
 
 .consultation-form__textarea {
@@ -179,14 +185,16 @@
   min-height: 150px;
   resize: vertical;
   line-height: 1.6;
-  border-bottom: none;
-  padding: 12px 0;
 }
 
 @media (max-width: 1100px) {
   .consultation-form {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 36px;
+  }
+
+  .consultation-form__content {
+    max-width: none;
   }
 
   .consultation-form__text,
@@ -202,7 +210,12 @@
 
   .consultation-form__contacts {
     border-right: none;
-    border-bottom: 1px solid #ececec;
+    border-bottom: 1px solid #dedede;
+  }
+
+  .consultation-form__contacts,
+  .consultation-form__project {
+    padding: 22px 20px;
   }
 
   .consultation-form__submit {
