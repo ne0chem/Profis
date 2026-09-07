@@ -3,6 +3,28 @@ import { Link, NavLink } from "react-router-dom";
 import "./Footer.css";
 import logo from "../../assets/logo.svg";
 
+const navItems = [
+  { to: "/", label: "Главная", end: true },
+  { to: "/services", label: "Услуги" },
+  { to: "/projects", label: "Проекты" },
+  { to: "/about", label: "О компании" },
+  { to: "/contact", label: "Контакты" },
+];
+
+const serviceLinks = [
+  { to: "/services?service=audit", label: "Аудит объекта" },
+  { to: "/services?service=modeling", label: "Расчёт риска" },
+  { to: "/services?service=modeling", label: "FDS-моделирование" },
+  { to: "/services?service=design", label: "СТУ и экспертиза" },
+];
+
+const scrollToConsultation = () => {
+  document.getElementById("consultation")?.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+};
+
 export default function Footer() {
   return (
     <footer className="footer">
@@ -19,24 +41,23 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="footer__nav">
+          <nav className="footer__nav" aria-label="Навигация в подвале">
             <h3 className="footer__title">Навигация</h3>
-            <NavLink to="/" end>
-              Главная
-            </NavLink>
-            <NavLink to="/services">Услуги</NavLink>
-            <NavLink to="/projects">Проекты</NavLink>
-            <NavLink to="/about">О компании</NavLink>
-            <NavLink to="/contact">Контакты</NavLink>
-          </div>
+            {navItems.map((item) => (
+              <NavLink key={item.to} to={item.to} end={item.end}>
+                {item.label}
+              </NavLink>
+            ))}
+          </nav>
 
-          <div className="footer__nav">
+          <nav className="footer__nav" aria-label="Услуги в подвале">
             <h3 className="footer__title">Услуги</h3>
-            <span>Аудит объекта</span>
-            <span>Расчёт риска</span>
-            <span>FDS-моделирование</span>
-            <span>СТУ и экспертиза</span>
-          </div>
+            {serviceLinks.map((item) => (
+              <Link key={item.label} to={item.to}>
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
           <div className="footer__contacts">
             <h3 className="footer__title">Контакты</h3>
@@ -47,7 +68,11 @@ export default function Footer() {
               <br />
               д. 9А, стр. 3
             </p>
-            <button type="button" className="footer__button">
+            <button
+              type="button"
+              className="footer__button"
+              onClick={scrollToConsultation}
+            >
               Связаться с нами
             </button>
           </div>
@@ -59,7 +84,7 @@ export default function Footer() {
           style={{ "--reveal-delay": "160ms" }}
         >
           <p>© {new Date().getFullYear()} Profis. Все права защищены</p>
-          <a href="/privacy">Политика конфиденциальности</a>
+          <Link to="/privacy">Политика конфиденциальности</Link>
         </div>
       </div>
     </footer>

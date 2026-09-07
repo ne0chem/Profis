@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./ConsultationForm.css";
 
 export default function ConsultationForm() {
@@ -30,9 +31,9 @@ export default function ConsultationForm() {
             />
             <span>
               Согласен(на) с{" "}
-              <a href="/privacy" className="consultation-form__link">
+              <Link to="/privacy" className="consultation-form__link">
                 политикой конфиденциальности
-              </a>
+              </Link>
             </span>
           </label>
           <button

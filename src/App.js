@@ -5,6 +5,7 @@ import About from "./pages/About/About";
 import Services from "./pages/Services/Services";
 import Progects from "./pages/Progects/Progects";
 import Contants from "./pages/Main/Contants/Contants";
+import Privacy from "./pages/Privacy/Privacy";
 import "./App.css";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="projects" element={<Progects />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contants />} />
+          <Route path="privacy" element={<Privacy />} />
         </Route>
       </Routes>
     </BrowserRouter>

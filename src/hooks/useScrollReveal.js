@@ -27,15 +27,24 @@ export default function useScrollReveal() {
         });
       },
       {
-        threshold: 0.08,
-        rootMargin: "0px 0px -4% 0px",
+        threshold: 0.12,
+        rootMargin: "0px 0px -8% 0px",
       }
     );
 
-    elements.forEach((element) => {
-      if (!element.classList.contains("is-revealed")) {
+    // Reveal already-visible blocks on route enter (same feel as Main).
+    requestAnimationFrame(() => {
+      elements.forEach((element) => {
+        if (element.classList.contains("is-revealed")) return;
+        const rect = element.getBoundingClientRect();
+        const viewHeight =
+          window.innerHeight || document.documentElement.clientHeight;
+        if (rect.top < viewHeight * 0.92 && rect.bottom > 0) {
+          element.classList.add("is-revealed");
+          return;
+        }
         observer.observe(element);
-      }
+      });
     });
 
     return () => observer.disconnect();
