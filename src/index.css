@@ -53,8 +53,8 @@ select {
 }
 
 .container {
-  max-width: 1600px;
-  margin: 0 auto;
+  --container-gutter: 15px;
+  width: 100%;
   padding: 0 15px;
   /* border: 1px solid red; */
   font-family: "Inter", sans-serif;
@@ -62,14 +62,14 @@ select {
 
 @media (min-width: 1800px) {
   .container {
-    max-width: 1760px;
+    --container-gutter: 40px;
     padding: 0 40px;
   }
 }
 
 @media (min-width: 2200px) {
   .container {
-    max-width: 1920px;
+    --container-gutter: 48px;
     padding: 0 48px;
   }
 }

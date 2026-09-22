@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import ProjectModal from "../../components/ProjectModal/ProjectModal";
-import heroImage from "../../assets/projectMain.svg";
+import React from "react";
+import heroImage from "../../assets/1234.png";
 import { projects } from "./projectsData";
 import "./Progects.css";
 
@@ -12,8 +11,6 @@ const scrollToConsultation = () => {
 };
 
 export default function Progects() {
-  const [activeProject, setActiveProject] = useState(null);
-
   return (
     <div className="projects-page">
       <div className="container">
@@ -83,16 +80,6 @@ export default function Progects() {
                 >
                   <article
                     className="projects-page__card-trigger"
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => setActiveProject(project)}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter" || event.key === " ") {
-                        event.preventDefault();
-                        setActiveProject(project);
-                      }
-                    }}
-                    aria-label={`Открыть проект: ${project.title}`}
                   >
                     <div className="projects-page__card-media">
                       <img
@@ -142,10 +129,6 @@ export default function Progects() {
         </section>
       </div>
 
-      <ProjectModal
-        project={activeProject}
-        onClose={() => setActiveProject(null)}
-      />
     </div>
   );
 }

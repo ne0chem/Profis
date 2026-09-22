@@ -2,10 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Main.css";
 import mainImage from "../../assets/imgMain.svg";
-import project1 from "../../assets/progect.png";
-import project2 from "../../assets/progect2.png";
-import project3 from "../../assets/progect3.png";
-import clientLogo from "../../assets/logo.svg";
+import { projects } from "../Progects/projectsData";
 import y1 from "../../assets/y1.svg";
 import y2 from "../../assets/y2.svg";
 import y3 from "../../assets/y3.svg";
@@ -18,6 +15,22 @@ import e3 from "../../assets/e11.svg";
 import e4 from "../../assets/dog.svg";
 import e5 from "../../assets/e5.svg";
 import e6 from "../../assets/e6.svg";
+import clientLogo1 from "../../assets/lg1.svg";
+import clientLogo2 from "../../assets/lg2.svg";
+import clientLogo3 from "../../assets/lg3.svg";
+import clientLogo4 from "../../assets/lg4.svg";
+import clientLogo5 from "../../assets/lg5.svg";
+import clientLogo6 from "../../assets/lg6.svg";
+import clientLogo7 from "../../assets/lg7.svg";
+import clientLogo8 from "../../assets/lg8.svg";
+import clientLogo9 from "../../assets/lg9.svg";
+import clientLogo10 from "../../assets/lg10.svg";
+import clientLogo11 from "../../assets/lg11.svg";
+import clientLogo12 from "../../assets/lg12.svg";
+import clientLogo13 from "../../assets/lg13.svg";
+import clientLogo14 from "../../assets/lg14.svg";
+import clientLogo15 from "../../assets/lg15.svg";
+import clientLogo16 from "../../assets/lg16.svg";
 
 const projectScrollAnimations = new WeakMap();
 
@@ -149,7 +162,16 @@ const animateProjectScroll = (slider, target, duration, onComplete) => {
   projectScrollAnimations.set(slider, animationFrame);
 };
 
-const getProjectLoopWidth = (slider) => slider.scrollWidth / 2;
+const getProjectLoopWidth = (slider) => {
+  const cards = slider.querySelectorAll(".main__projects-card");
+  const duplicateStartIndex = cards.length / 2;
+
+  if (!cards.length || !cards[duplicateStartIndex]) {
+    return slider.scrollWidth / 2;
+  }
+
+  return cards[duplicateStartIndex].offsetLeft - cards[0].offsetLeft;
+};
 
 const normalizeProjectLoop = (slider) => {
   const loopWidth = getProjectLoopWidth(slider);
@@ -185,47 +207,21 @@ const getProjectScrollTarget = (slider, direction) => {
   );
 };
 
-const projects = [
-  {
-    image: project1,
-    title: "Театр оперы и балета",
-    type: "Культурный объект",
-    location: "Севастополь",
-    year: "2024",
-    task: "Подготовить комплекс расчётных обоснований для уникального общественного здания.",
-    services: ["Расчёт риска", "FDS-моделирование", "СТУ"],
-    result: "Документация подготовлена к прохождению экспертизы.",
-  },
-  {
-    image: project2,
-    title: "Усадьба «Дивноморское»",
-    type: "Комплекс зданий",
-    location: "Краснодарский край",
-    year: "2020",
-    task: "Определить требования пожарной безопасности для территории со сложной архитектурой.",
-    services: ["Категорирование", "Расчёт риска", "МОПБ"],
-    result: "Сформирован комплект обоснований для проектных решений.",
-  },
-  {
-    image: project3,
-    title: "Хореографическая академия",
-    type: "Образовательный объект",
-    location: "Севастополь",
-    year: "2024",
-    task: "Обосновать безопасность объекта с учебными, общественными и сценическими пространствами.",
-    services: ["FDS-моделирование", "Расчёт риска", "Экспертиза"],
-    result: "Расчётные материалы подготовлены для согласования.",
-  },
-];
-
 const loopedProjects = [...projects, ...projects];
 
 const reasons = [
   {
     number: "01",
     title: "Полный цикл",
-    text: "Ведём объект от аудита и расчётов до сопровождения в экспертизе — один ответственный подрядчик на всех этапах.",
-    points: ["Аудит", "Расчёты", "Проект", "Экспертиза", "Сопровождение"],
+    text: "От аудита и расчётов до сопровождения в экспертизе — один ответственный подрядчик на всех этапах.",
+    points: [
+      "Иследование объекта",
+      "Аудит",
+      "Расчёты",
+      "Проект",
+      "Экспертиза",
+      "Сопровождение",
+    ],
     footer: "Комплексный подход",
     listStyle: "dots",
     tone: "dark",
@@ -262,7 +258,7 @@ const reasons = [
     number: "04",
     title: "До результата",
     text: "Не останавливаемся на передаче документов — сопровождаем проект до положительного заключения.",
-    points: ["Замечания", "Защита", "Сдача", "Сопровождение"],
+    points: ["Сопровождение", "Защита", "Обоснование", "Сдача"],
     footer: "Ответственность",
     listStyle: "dots",
     tone: "soft",
@@ -274,32 +270,32 @@ const services = [
     id: "design",
     number: "01",
     title: "Проектирование",
-    tags: "МОПБ / СТУ / РД",
-    text: "Разрабатываем проектную и рабочую документацию с учётом требований нормативной базы, особенностей объекта и актуальных рисков.",
+    tags: "СТУ / МОПБ / ПД",
+    text: "Разрабатываем проектную документацию 9-го раздела Постановления Правительства РФ от 16.02.2008 № 87 «О составе разделов проектной документации и требованиях к их содержанию» с учётом требований нормативной базы и особенностей объекта.",
     image: y1,
   },
   {
     id: "modeling",
     number: "02",
-    title: "Расчёты и моделирование",
-    tags: "РР / FDS / Категории",
-    text: "Выполняем комплексные расчёты и компьютерное моделирование процессов пожара с использованием современных методик и ПО.",
+    title: "Производство расчётов и моделирования",
+    tags: "РР / РК / FDS / РТП /РСиС",
+    text: "Выполняем расчёты и математическое компьютерное моделирование физико-химических процессов пожара, а также расстановки сил и средств пожарных подразделений с использованием современных методик.",
     image: y2,
   },
   {
     id: "installation",
     number: "03",
     title: "Монтаж и обслуживание",
-    tags: "Монтаж / ПНР / ТО",
-    text: "Выполняем монтаж, пусконаладочные работы и техническое обслуживание систем пожарной безопасности и инженерных систем.",
+    tags: "АПС / СОУЭ / АУПТ / СПЗ ",
+    text: "Выполняем работы от разработки проектной документации до монтажа и обслуживания систем противопожарной защиты.",
     image: y3,
   },
   {
     id: "audit",
     number: "04",
-    title: "Аудит и консалтинг",
+    title: "Аудит, экспертиза и консалтинг",
     tags: "Аудит / Консалтинг / МЧС",
-    text: "Проводим аудит объектов, анализ проектных решений и действующих систем, разрабатываем рекомендации по устранению нарушений.",
+    text: "Производим аудит и экспертизу объектов в облости обеспечения пожарной безопасности, иследуем проектные решения и разрабатываем рекомендации по устранению нарушений.",
     image: y4,
   },
   {
@@ -313,7 +309,7 @@ const services = [
   {
     id: "consulting",
     number: "06",
-    title: "Консалтинг и сопровождение",
+    title: "Сопровождение",
     tags: "Консультации / Экспертиза",
     text: "Консультируем, сопровождаем и представляем ваши интересы при проектировании, согласовании и проверках.",
     image: y6,
@@ -326,10 +322,15 @@ const steps = [
     phase: "Начало работ",
     title: "Аудит объекта",
     action:
-      "Уточняем назначение, площадь, этажность и состав действующих систем. При необходимости проводим выезд на объект.",
+      "Исследуем предоставленную заказчиком информацию об объекте. Уточняем его назначение, площадь, этажность и состав действующих систем. При необходимости осуществляем выезд на объект.",
     result:
       "Формируем техническое задание и определяем необходимый состав документации.",
-    tags: ["Обследование", "Анализ", "Техническое задание", "Рекомендации"],
+    tags: [
+      "Обследование",
+      "Иследование",
+      "Техническое задание",
+      "Рекомендации",
+    ],
     image: e1,
   },
   {
@@ -338,9 +339,8 @@ const steps = [
     title: "Исходные данные",
     action:
       "Запрашиваем чертежи, спецификации и сведения об инженерных системах. Проверяем комплектность материалов.",
-    result:
-      "Вы получаете точный чек-лист. Недостающие данные помогаем восстановить.",
-    tags: ["Чертежи", "Спецификации", "Чек-лист", "Восстановление"],
+    result: "Получение точного чек-листа.",
+    tags: ["Чертежи", "Спецификации", "Чек-лист", "Документация"],
     image: e2,
   },
   {
@@ -348,9 +348,10 @@ const steps = [
     phase: "Проектирование",
     title: "Варианты решения",
     action:
-      "Просчитываем 2–3 сценария и обосновываем каждый раздел: расчёт риска, категории, FDS-моделирование или СТУ.",
-    result: "Предлагаем прозрачный состав работ и стоимость без лишних услуг.",
-    tags: ["Сценарии", "Обоснование", "Состав работ", "Стоимость"],
+      "Разрабатываем необходимое количество сценариев для обоснования каждого отступления.",
+    result:
+      "Оптимальные решения и прозрачный состав работ без навязывания лишних услуг.",
+    tags: ["Предложение", "Обоснование", "Согласование", "Качество"],
     image: e3,
   },
   {
@@ -365,12 +366,12 @@ const steps = [
   },
   {
     number: "05",
-    phase: "Реализация",
+    phase: "Разработка",
     title: "Расчёты и проектирование",
     action:
       "Работаем в лицензионном ПО: моделируем динамику пожара, определяем категории и разрабатываем СТУ.",
     result: "Готовим обоснованные решения, устойчивые к экспертной проверке.",
-    tags: ["FDS", "Категории", "СТУ", "Документация"],
+    tags: ["FDS", "РК", "СТУ", "Документация"],
     image: e5,
   },
   {
@@ -381,54 +382,88 @@ const steps = [
       "Передаём итоговый комплект, отвечаем на замечания экспертов и защищаем выполненные расчёты.",
     result:
       "Вы получаете документацию для надзорных органов и сопровождение до результата.",
-    tags: ["Экспертиза", "Защита", "Сдача", "Сопровождение"],
+    tags: ["Экспертиза", "Обоснование", "Сдача", "Сопровождение"],
     image: e6,
     final: true,
   },
 ];
 
-const clientRows = [
-  {
-    id: "row-1",
-    direction: "left",
-    duration: "38s",
-    clients: Array.from({ length: 8 }, (_, index) => ({
-      id: `r1-${index + 1}`,
-      logo: clientLogo,
-      name: `Клиент ${index + 1}`,
-    })),
-  },
-  {
-    id: "row-2",
-    direction: "right",
-    duration: "52s",
-    clients: Array.from({ length: 8 }, (_, index) => ({
-      id: `r2-${index + 1}`,
-      logo: clientLogo,
-      name: `Клиент ${index + 9}`,
-    })),
-  },
-  {
-    id: "row-3",
-    direction: "left",
-    duration: "44s",
-    clients: Array.from({ length: 8 }, (_, index) => ({
-      id: `r3-${index + 1}`,
-      logo: clientLogo,
-      name: `Клиент ${index + 17}`,
-    })),
-  },
+// Чтобы добавить новый логотип, импортируйте его выше и добавьте сюда объект.
+// Распределение по строкам и скорость анимации настроятся автоматически.
+const clients = [
+  { id: "client-1", logo: clientLogo1, name: "Клиент 1" },
+  { id: "client-2", logo: clientLogo2, name: "Клиент 2" },
+  { id: "client-3", logo: clientLogo3, name: "Клиент 3" },
+  { id: "client-4", logo: clientLogo4, name: "Клиент 4" },
+  { id: "client-5", logo: clientLogo5, name: "Клиент 5" },
+  { id: "client-6", logo: clientLogo6, name: "Клиент 6" },
+  { id: "client-7", logo: clientLogo7, name: "Клиент 7" },
+  { id: "client-8", logo: clientLogo8, name: "Клиент 8" },
+  { id: "client-9", logo: clientLogo9, name: "Клиент 9" },
+  { id: "client-10", logo: clientLogo10, name: "Клиент 10" },
+  { id: "client-11", logo: clientLogo11, name: "Клиент 11" },
+  { id: "client-12", logo: clientLogo12, name: "Клиент 12" },
+  { id: "client-13", logo: clientLogo13, name: "Клиент 13" },
+  { id: "client-14", logo: clientLogo14, name: "Клиент 14" },
+  { id: "client-15", logo: clientLogo15, name: "Клиент 15" },
+  { id: "client-16", logo: clientLogo16, name: "Клиент 16" },
 ];
+
+const clientRowSettings = [
+  { id: "row-1", direction: "left", minimumDuration: 42 },
+  { id: "row-2", direction: "right", minimumDuration: 46 },
+];
+
+const fillClientRow = (items, minimumItems = 8) => {
+  if (!items.length) return [];
+
+  return Array.from(
+    { length: Math.max(minimumItems, items.length) },
+    (_, index) => {
+      const client = items[index % items.length];
+
+      return {
+        ...client,
+        id: `${client.id}-${index + 1}`,
+      };
+    },
+  );
+};
+
+const clientRows = clientRowSettings.map((row, rowIndex) => {
+  const distributedClients = clients.filter(
+    (_, clientIndex) => clientIndex % clientRowSettings.length === rowIndex,
+  );
+  const additionalClients = clients
+    .filter(
+      (client) =>
+        !distributedClients.some(
+          (distributedClient) => distributedClient.id === client.id,
+        ),
+    )
+    .slice(0, Math.max(0, 8 - distributedClients.length));
+  const rowClients = fillClientRow([
+    ...distributedClients,
+    ...additionalClients,
+  ]);
+
+  return {
+    id: row.id,
+    direction: row.direction,
+    duration: `${Math.max(row.minimumDuration, rowClients.length * 5)}s`,
+    clients: rowClients,
+  };
+});
 
 export default function Main() {
   const [activeArrow, setActiveArrow] = useState(null);
   const [activeProcessStep, setActiveProcessStep] = useState(0);
+  const [activeServiceStep, setActiveServiceStep] = useState(0);
   const [activeWhyStep, setActiveWhyStep] = useState(0);
   const sliderRef = useRef(null);
   const projectsPausedRef = useRef(false);
   const projectsLastMoveRef = useRef(Date.now());
   const processCardRefs = useRef([]);
-  const servicesBoardRef = useRef(null);
   const serviceCardRefs = useRef([]);
   const whyBoardRef = useRef(null);
   const heroMediaRef = useRef(null);
@@ -508,8 +543,7 @@ export default function Main() {
       if (!state.enabled || !heroMediaRef.current) return;
       const rect = heroMediaRef.current.getBoundingClientRect();
       const viewH = window.innerHeight || 1;
-      const progress =
-        (viewH * 0.42 - (rect.top + rect.height * 0.35)) / viewH;
+      const progress = (viewH * 0.42 - (rect.top + rect.height * 0.35)) / viewH;
       state.sy = Math.max(-12, Math.min(12, progress * 24));
       requestTick();
     };
@@ -570,52 +604,21 @@ export default function Main() {
         currentStep === nextProcessStep ? currentStep : nextProcessStep,
       );
 
-      const servicesBoard = servicesBoardRef.current;
-      if (servicesBoard) {
-        const rect = servicesBoard.getBoundingClientRect();
-        const scrollable = Math.max(
-          servicesBoard.offsetHeight - window.innerHeight,
-          1,
-        );
-        const scrolled = Math.min(Math.max(-rect.top, 0), scrollable);
-        const progress = (scrolled / scrollable) * (services.length - 1);
+      let nextServiceStep = 0;
 
-        serviceCardRefs.current.forEach((card, index) => {
-          if (!card) return;
+      serviceCardRefs.current.forEach((card, index) => {
+        const sticky = card?.querySelector(".main__process-card-sticky");
+        if (!sticky) return;
 
-          const rawCardProgress =
-            index === 0 ? 1 : Math.min(Math.max(progress - index + 1, 0), 1);
-          const cardProgress =
-            rawCardProgress *
-            rawCardProgress *
-            rawCardProgress *
-            (rawCardProgress * (rawCardProgress * 6 - 15) + 10);
+        const stickyTop = 92 + index * 8;
+        if (sticky.getBoundingClientRect().top <= stickyTop + 2) {
+          nextServiceStep = index;
+        }
+      });
 
-          // How many steps this card is ahead of the current scroll position.
-          // 0 = current / in stack, 1 = next in deck, >1 = further in the pile.
-          const depth = index - progress;
-          const entryBase = Math.min(window.innerHeight * 0.5, 420);
-          const entryDistance =
-            depth > 1
-              ? entryBase + (depth - 1) * 100
-              : (1 - cardProgress) * entryBase;
-
-          let opacity = 1;
-          if (depth > 1.02) {
-            // Hide cards deeper than the immediate next one.
-            opacity = 0;
-          } else if (cardProgress < 1) {
-            // Next card peeking / rising onto the deck.
-            opacity = 0.62 + cardProgress * 0.38;
-          }
-
-          card.style.setProperty("--service-progress", cardProgress);
-          card.style.setProperty("--service-entry", `${entryDistance}px`);
-          card.style.setProperty("--service-opacity", opacity);
-          card.classList.toggle("is-visible", opacity > 0.02);
-          card.classList.toggle("is-next", depth > 0 && depth <= 1.02);
-        });
-      }
+      setActiveServiceStep((currentStep) =>
+        currentStep === nextServiceStep ? currentStep : nextServiceStep,
+      );
 
       const board = whyBoardRef.current;
       if (board) {
@@ -741,20 +744,17 @@ export default function Main() {
         >
           <div className="main__hero-content">
             <p className="main__hero-eyebrow">
-              Инженерные расчёты · экспертиза
+              Разработка проектной документации
             </p>
             <h1 className="main__hero-title" id="main-hero-title">
-              Обоснования,
+              Инженерные расчеты
               <br />
-              которые проходят
-              <br />
-              <span className="main__hero-title-muted">экспертизу</span>
+              <span className="main__hero-title-muted">и экпертиза</span>
             </h1>
             <span className="main__hero-rule" aria-hidden="true" />
             <p className="main__hero-text">
-              Расчёт пожарного риска, FDS-моделирование, СТУ и сопровождение до
-              положительного заключения — для сложных объектов любого масштаба
-              по всей России.
+              Сопровождение до положительного заключения — для сложных объектов
+              любого масштаба по всей России.
             </p>
             <button
               type="button"
@@ -790,31 +790,7 @@ export default function Main() {
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
             >
-              <g className="main__hero-overlay-grid" stroke="#9a9da3">
-                <path d="M72 88H568" />
-                <path d="M72 168H548" />
-                <path d="M92 248H560" />
-                <path d="M72 328H520" />
-                <path d="M110 408H540" />
-                <path d="M160 60V460" />
-                <path d="M280 48V448" />
-                <path d="M400 72V470" />
-                <path d="M500 90V430" />
-              </g>
-
-              <g className="main__hero-overlay-net" stroke="#c51115">
-                <path d="M168 412C210 360 248 300 286 236C318 182 352 140 402 118" />
-                <path d="M286 236H402" />
-                <path d="M402 118V236" />
-                <path d="M402 236C438 248 478 278 510 318" />
-              </g>
-
-              <g className="main__hero-overlay-nodes">
-                <circle cx="286" cy="236" r="4.5" />
-                <circle cx="402" cy="118" r="4.5" />
-                <circle cx="510" cy="318" r="4.5" />
-                <circle cx="168" cy="412" r="3.5" />
-              </g>
+              \
             </svg>
           </div>
         </section>
@@ -928,7 +904,7 @@ export default function Main() {
             {loopedProjects.map((project, index) => (
               <article
                 className="main__projects-card"
-                key={`${project.title}-${index}`}
+                key={`${project.id}-${index}`}
                 data-reveal
                 data-reveal-fade
                 style={{
@@ -959,24 +935,16 @@ export default function Main() {
                   <h3 className="main__projects-card-title">{project.title}</h3>
 
                   <div className="main__projects-card-details">
-                    <div className="main__projects-card-task">
-                      <p className="main__projects-card-label">Задача</p>
-                      <p className="main__projects-card-copy">{project.task}</p>
-                    </div>
-
                     <div>
-                      <p className="main__projects-card-label">Выполнено</p>
+                      <p className="main__projects-card-label">
+                        Выполненные работы
+                      </p>
                       <ul className="main__projects-card-services">
-                        {project.services.map((service) => (
-                          <li key={service}>{service}</li>
+                        {project.tags.map((tag) => (
+                          <li key={tag}>{tag}</li>
                         ))}
                       </ul>
                     </div>
-                  </div>
-
-                  <div className="main__projects-card-result">
-                    <p className="main__projects-card-label">Результат</p>
-                    <p className="main__projects-card-copy">{project.result}</p>
                   </div>
                 </div>
               </article>
@@ -984,76 +952,124 @@ export default function Main() {
           </div>
         </section>
 
-        <section className="main__services" aria-labelledby="services-title">
-          <div className="main__services-board" ref={servicesBoardRef}>
+        <section
+          className="main__services main__process"
+          aria-labelledby="services-title"
+        >
+          <div className="main__services-board">
             <div className="main__services-sticky">
-              <div className="main__services-header" data-reveal>
+              <div
+                className="main__services-header main__process-header"
+                data-reveal
+              >
                 <div>
-                  <p className="main__section-eyebrow">наши услуги</p>
+                  <p className="main__section-eyebrow">выполняемые работы</p>
                   <h2 className="main__section-title" id="services-title">
                     Решения для пожарной безопасности объекта
                   </h2>
                 </div>
-                <p className="main__services-lead">
+                <p className="main__services-lead main__process-lead">
                   Полный цикл работ — от проектирования и расчётов до монтажа,
                   аудита и сопровождения. Листайте карточки или откройте нужное
                   направление.
                 </p>
               </div>
 
-              <ol className="main__services-deck">
-                {services.map((service, index) => (
-                  <li
-                    className="main__services-card"
-                    key={service.id}
-                    ref={(node) => {
-                      serviceCardRefs.current[index] = node;
-                    }}
-                    style={{
-                      "--service-index": index,
-                      "--service-offset": `${index * 42}px`,
-                      "--service-progress": index === 0 ? 1 : 0,
-                      "--service-opacity": index === 0 ? 1 : index === 1 ? 0.62 : 0,
-                    }}
-                  >
-                    <article className="main__services-card-inner">
-                      <div className="main__services-card-tab">
-                        <span>{service.number}</span>
-                        <h3>{service.title}</h3>
-                      </div>
+              <ol className="main__process-cards">
+                {services.map((service, index) => {
+                  const mediaSide = index % 2 === 0 ? "right" : "left";
+                  const serviceTags = service.tags
+                    .split("/")
+                    .map((tag) => tag.trim())
+                    .filter(Boolean);
 
-                      <div className="main__services-card-body">
-                        <div className="main__services-card-copy">
-                          <p className="main__services-card-kicker">
-                            {service.tags}
-                          </p>
-                          <p className="main__services-card-text">
-                            {service.text}
-                          </p>
+                  return (
+                    <li
+                      className={`main__process-card main__process-card--${
+                        index % 2 === 0 ? "left" : "right"
+                      } main__process-card--media-${mediaSide}${
+                        index === services.length - 1
+                          ? " main__process-card--final"
+                          : ""
+                      }`}
+                      key={service.id}
+                      ref={(node) => {
+                        serviceCardRefs.current[index] = node;
+                      }}
+                      data-reveal
+                      data-reveal-fade
+                      style={{
+                        "--card-index": index,
+                        "--reveal-delay": `${Math.min(index, 2) * 110}ms`,
+                      }}
+                    >
+                      <div
+                        className={`main__process-card-sticky${
+                          index === activeServiceStep ? " is-active" : ""
+                        }`}
+                      >
+                        <span
+                          className="main__process-card-number"
+                          aria-hidden="true"
+                        >
+                          {service.number}
+                        </span>
 
-                          <div className="main__services-card-footer">
-                            <Link
-                              to={`/services?service=${service.id}`}
-                              className="main__services-card-link"
-                            >
-                              Подробнее об услуге
-                              <span aria-hidden="true">→</span>
-                            </Link>
+                        <article className="main__process-card-inner">
+                          <div className="main__process-card-copy">
+                            <p className="main__process-card-phase">
+                              <span>{service.number}</span>
+                              <span aria-hidden="true"> / </span>
+                              Услуги компании
+                            </p>
+
+                            <h3 className="main__process-card-title">
+                              {service.title}
+                            </h3>
+
+                            <div className="main__process-card-details">
+                              <div>
+                                <p className="main__process-card-label">
+                                  Что делаем
+                                </p>
+                                <p className="main__process-card-text">
+                                  {service.text}
+                                </p>
+                              </div>
+
+                              <div className="main__process-card-result">
+                                <p className="main__process-card-label">
+                                  Направления
+                                </p>
+                                <p className="main__process-card-text">
+                                  {serviceTags.join(" · ")}
+                                </p>
+                              </div>
+                            </div>
+
+                            <ul className="main__process-card-tags">
+                              <li className="main__service-details-item">
+                                <Link to={`/services?service=${service.id}`}>
+                                  Подробнее об услуге{" "}
+                                  <span aria-hidden="true">→</span>
+                                </Link>
+                              </li>
+                            </ul>
                           </div>
-                        </div>
 
-                        <div className="main__services-card-media">
-                          <img
-                            src={service.image}
-                            alt=""
-                            className="main__services-card-image"
-                            decoding="async"
-                          />
-                        </div>
+                          <div className="main__process-card-media">
+                            <img
+                              src={service.image}
+                              alt=""
+                              className="main__process-card-image"
+                              decoding="async"
+                            />
+                          </div>
+                        </article>
                       </div>
-                    </article>
-                  </li>
-                ))}
+                    </li>
+                  );
+                })}
               </ol>
             </div>
           </div>
@@ -1168,8 +1184,10 @@ export default function Main() {
                   Почему с нами спокойнее
                 </h2>
                 <p className="main__why-lead">
-                  Точные расчёты, прозрачный состав работ и сопровождение до
-                  положительного заключения экспертизы.
+                  Лидер рынка в области обеспечения пожарной безопасности,
+                  работающий с ведущими застройщиками. Обеспечиваем точные
+                  расчёты, прозрачный состав работ и сопровождаем проект до
+                  получения положительного заключения экспертизы.
                 </p>
                 <span className="main__why-header-rule" aria-hidden="true" />
               </div>
@@ -1273,24 +1291,29 @@ export default function Main() {
                 className={`main__clients-row main__clients-row--${row.direction}`}
                 style={{ "--marquee-duration": row.duration }}
               >
-                <ul className="main__clients-track">
-                  {[...row.clients, ...row.clients].map((client, index) => (
-                    <li
-                      className="main__clients-item"
-                      key={`${client.id}-${index}`}
+                <div className="main__clients-track">
+                  {[0, 1].map((copyIndex) => (
+                    <ul
+                      className="main__clients-group"
+                      key={`${row.id}-copy-${copyIndex}`}
+                      aria-hidden={copyIndex === 1 ? true : undefined}
                     >
-                      <img
-                        className="main__clients-logo"
-                        src={client.logo}
-                        alt={index < row.clients.length ? client.name : ""}
-                        loading="lazy"
-                        aria-hidden={
-                          index >= row.clients.length ? true : undefined
-                        }
-                      />
-                    </li>
+                      {row.clients.map((client) => (
+                        <li
+                          className="main__clients-item"
+                          key={`${client.id}-${copyIndex}`}
+                        >
+                          <img
+                            className="main__clients-logo"
+                            src={client.logo}
+                            alt={copyIndex === 0 ? client.name : ""}
+                            decoding="async"
+                          />
+                        </li>
+                      ))}
+                    </ul>
                   ))}
-                </ul>
+                </div>
               </div>
             ))}
           </div>

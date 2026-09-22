@@ -133,6 +133,59 @@
   mask-composite: intersect;
 }
 
+@media (min-width: 1101px) {
+  .projects-page__hero-media {
+    justify-content: flex-end;
+    width: calc(100% + var(--container-gutter, 15px));
+    margin-right: calc(-1 * var(--container-gutter, 15px));
+  }
+
+  .projects-page__hero-image {
+    margin-left: 0;
+    object-position: right center;
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, #000 14%, #000 96%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 15%, #000 85%, transparent 100%);
+    mask-image:
+      linear-gradient(to right, transparent 0%, #000 14%, #000 96%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 15%, #000 85%, transparent 100%);
+  }
+
+  .projects-page__hero-media::after {
+    background:
+      linear-gradient(
+        to right,
+        #fff 0%,
+        rgba(255, 255, 255, 0.35) 7%,
+        transparent 16%
+      ),
+      linear-gradient(
+        to bottom,
+        #fff 0%,
+        rgba(255, 255, 255, 0.55) 8%,
+        transparent 28%
+      ),
+      radial-gradient(
+        ellipse 95% 95% at 0% 100%,
+        #fff 0%,
+        #fff 16%,
+        rgba(255, 255, 255, 0.65) 38%,
+        transparent 66%
+      ),
+      linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 84%,
+        rgba(255, 255, 255, 0.35) 93%,
+        #fff 100%
+      );
+  }
+
+  .projects-page__hero-media::before {
+    display: none;
+  }
+}
+
 .projects-page__hero-content {
   position: relative;
   z-index: 2;
@@ -349,7 +402,6 @@
   height: 100%;
   max-width: 100%;
   background: #fff;
-  cursor: pointer;
 }
 
 .projects-page__card-trigger:focus-visible {
@@ -363,7 +415,7 @@
   width: 100%;
   overflow: hidden;
   background: #ececeb;
-  aspect-ratio: 16 / 11;
+  aspect-ratio: 16 / 9;
 }
 
 .projects-page__card-media::after {
@@ -506,7 +558,7 @@
   }
 
   .projects-page__card--narrow .projects-page__card-media {
-    aspect-ratio: 5 / 4;
+    aspect-ratio: 16 / 10;
   }
 }
 
@@ -679,7 +731,7 @@
   }
 
   .projects-page__card-media {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
   }
 }
 
@@ -718,4 +770,23 @@
   .projects-page__hero-button-arrow {
     transition: none;
   }
+}
+
+/* Keep the left image edge as soft as the bottom edge on every viewport. */
+.projects-page__hero-media::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: 4;
+  display: block;
+  width: clamp(120px, 32%, 360px);
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    #fff 0%,
+    rgba(255, 255, 255, 0.95) 18%,
+    rgba(255, 255, 255, 0.65) 48%,
+    rgba(255, 255, 255, 0.25) 72%,
+    transparent 100%
+  );
 }

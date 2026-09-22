@@ -154,13 +154,14 @@ export default function About() {
               Инженерные расчёты
               <br />
               <span className="about__hero-title-muted">
-                для сложных объектов
+                для объектов <br /> любой сложности
               </span>
             </h1>
             <span className="about__hero-rule" aria-hidden="true" />
             <p className="about__hero-text">
               Проектирование, моделирование и сопровождение объектов любой
-              сложности — от аудита и FDS до СТУ и положительного заключения.
+              сложности — от проектирования и аудита до положительного
+              заключения.
             </p>
             <button
               type="button"
@@ -195,7 +196,7 @@ export default function About() {
           <div className="about__section-head" data-reveal>
             <p className="about__eyebrow">история</p>
             <h2 className="about__title" id="about-story-title">
-              Как мы пришли к точным расчётам
+              Наш профессионально-экспертный путь
             </h2>
           </div>
 
@@ -211,9 +212,8 @@ export default function About() {
                 <p>лет в инженерной безопасности</p>
               </div>
               <p className="about__panel-text">
-                PROFIS вырос из практики сопровождения сложных объектов:
-                театров, академий, усадеб и крупных общественных комплексов, где
-                ошибка в расчёте стоит слишком дорого.
+                PROFIS - это практика сопровождения сложных объектов: театров,
+                уникальных объектов и крупных общественных комплексов.
               </p>
             </article>
 
@@ -422,7 +422,9 @@ export default function About() {
                     type="button"
                     className="about__license"
                     onClick={() => setActiveLicense(license)}
-                    style={{ "--reveal-delay": `${Math.min(index, 4) * 120}ms` }}
+                    style={{
+                      "--reveal-delay": `${Math.min(index, 4) * 120}ms`,
+                    }}
                     data-reveal
                     data-reveal-fade
                   >

@@ -81,6 +81,37 @@
   user-select: none;
 }
 
+@media (min-width: 1101px) {
+  .contacts__hero-media {
+    justify-content: flex-end;
+    width: calc(100% + var(--container-gutter, 15px));
+    margin-right: calc(-1 * var(--container-gutter, 15px));
+  }
+
+  .contacts__hero-image {
+    margin-left: 0;
+    object-position: right center;
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, #000 14%, #000 96%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 15%, #000 85%, transparent 100%);
+    mask-image:
+      linear-gradient(to right, transparent 0%, #000 14%, #000 96%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 15%, #000 85%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+
+  .contacts__hero-media::after {
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 84%,
+      rgba(255, 255, 255, 0.45) 94%,
+      #fff 100%
+    );
+  }
+}
+
 .contacts__hero-content {
   position: relative;
   z-index: 2;

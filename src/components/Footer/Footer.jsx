@@ -78,12 +78,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <div
-          className="footer__bottom"
-          data-reveal
-          style={{ "--reveal-delay": "160ms" }}
-        >
-          <p>© {new Date().getFullYear()} Profis. Все права защищены</p>
+        <div className="footer__bottom">
+          <p>
+            © {new Date().getFullYear()} ООО «ПРОФИС ГРУПП». Все права
+            защищены.
+          </p>
           <Link to="/privacy">Политика конфиденциальности</Link>
         </div>
       </div>
